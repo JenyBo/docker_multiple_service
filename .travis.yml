@@ -13,3 +13,10 @@ after_success:
   - docker build -t jenybo/multi-nginx ./nginx
   - docker build -t jenybo/multi-server ./server
   - docker build -t jenybo/multi-worker ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  
+  - docker push jenybo/multi-client
+  - docker push jenybo/multi-nginx
+  - docker push jenybo/multi-server
+  - docker push jenybo/multi-worker
